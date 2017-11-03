@@ -90,15 +90,15 @@ My final model consisted of the following layers:
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Input         		| 32x32x3 RGB image   							| 
-| Convolution 5x5     	| 1x1 stride, valid padding, outputs 28x28x6 	|
+| Convolution 5x5     	| 1x1 stride, valid padding, outputs 28x28x64 	|
 | RELU					|												|
-| Max pooling 2x2	    | 2x2 stride, outputs 14x14x6 					|
-| Convolution 5x5	    | 1x1 stride, valid padding, outputs 10x10x16.  |
+| Max pooling 2x2	    | 2x2 stride, outputs 14x14x64 					|
+| Convolution 5x5	    | 1x1 stride, valid padding, outputs 10x10x64.  |
 | RELU               	|
-|  Max pooling 2x2      | 2x2 stride, valid padding, outputs 5x5x16=400
-|	Fully connected		| outputs 120.        							|
+|  Max pooling 2x2      | 2x2 stride, valid padding, outputs 5x5x64=1600
+|	Fully connected		| outputs 512.        							|
 | 	RELU                |
-|	Fully connected		|	outputs 84
+|	Fully connected		|	outputs 216
 |	RELU                |
 |	Fully connected		|	outputs 43 （i.e. logits)
 |	Softmax				| 	        									|
@@ -109,12 +109,12 @@ My final model consisted of the following layers:
 
 ####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-To train the model, I used an optimizer=AdamOptimizer, batch size=256, learning rate=0.001 and epochs=50.
+To train the model, I used an optimizer=AdamOptimizer, batch size=256, learning rate=0.001, epochs=100 and drop out=0.5.
 
 ####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 My final model results were:
-* training set accuracy of ?
+* training set accuracy of ? 
 * validation set accuracy of ? 
 * test set accuracy of ?
 
