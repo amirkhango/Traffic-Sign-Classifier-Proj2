@@ -99,7 +99,8 @@ My final model consisted of the following layers:
 |	Fully connected		| outputs 512.        							|
 | 	RELU                |
 |	Fully connected		|	outputs 216
-|	RELU                |
+|	Drop out            |   keep_prob = 0.5
+|   RELU                |
 |	Fully connected		|	outputs 43 （i.e. logits)
 |	Softmax				| 	        									|
 |						|												|
@@ -114,16 +115,33 @@ To train the model, I used an optimizer=AdamOptimizer, batch size=256, learning 
 ####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 My final model results were:
-* training set accuracy of ? 
-* validation set accuracy of ? 
-* test set accuracy of ?
+* training set accuracy of ? 99.6%
+* validation set accuracy of ? 94.3%
+* test set accuracy of ? 92.7%
 
 If an iterative approach was chosen:
+
 * What was the first architecture that was tried and why was it chosen?
+
+For simplicity, the first architecture dose not clude Drop out layer.
+
 * What were some problems with the initial architecture?
+
+It seems overfitting, i.e. higher acc on train set, but lower acc on validation set.
+
 * How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
+
+I add Dropout layer after the last full connected layer.
+
 * Which parameters were tuned? How were they adjusted and why?
+
+I decrease epochs from 100 to 30. Because 30 epochs is enough for up 93% on validation set.
+
+I set the dropout rate=0.5 which is an empirical setting.
+
 * What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+
+I design 2 onv layers to capture invariant shift features in images and use dropout layer to avoid overfitting.
 
 If a well known architecture was chosen:
 * What architecture was chosen?
@@ -135,12 +153,21 @@ If a well known architecture was chosen:
 
 ####1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
-Here are five German traffic signs that I found on the web:
+Here are five German traffic signs that I found on the web and I made the original pictures to suit the CNN input size:
+
+[//]: # (Image References)
+[image4]: ./traffic-signs-data/online_pic/pre_img1.png "image4"
+[image5]: ./traffic-signs-data/online_pic/pre_img2.jpg "mumbaistampede"
+[image6]: ./traffic-signs-data/online_pic/pre_img3.png "mumbaistampede"
+[image7]: ./traffic-signs-data/online_pic/pre_img4.jpg "mumbaistampede"
+[image8]: ./traffic-signs-data/online_pic/pre_img5.jpg "mumbaistampede"
 
 ![alt text][image4] ![alt text][image5] ![alt text][image6] 
 ![alt text][image7] ![alt text][image8]
 
-The first image might be difficult to classify because ...
+The first image might be difficult to classify because its logo seems small.
+The second, third, and fourth seem easy to be predcited.
+The last one is ont the up-right corner and maybe difficult to be predicted.
 
 ####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
