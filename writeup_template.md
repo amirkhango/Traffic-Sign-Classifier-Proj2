@@ -82,6 +82,10 @@ Before they look like:
 After preprocessing, the sampled images for showing look as below, which are more realistic.
 ![after preprocessing][image12]
 
+The reason for data prepocess is because data preprocessing plays a very important in many deep learning algorithms. In practice, many methods work best after the data has been normalized and whitened. After data preprocessing, the input data has a similar scale with the learning weights W and bias B, which is good for training our deep learning model quickly and make a good classification. 
+
+Another technique, I do not use here, is data agmentation. It is a skill to increase the eventful samples into training set, which would improve our model's robust and generalization for testing. But here even without it, we could also satisfy the requirement of the project. So I do not implement it.
+
 
 ####2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
